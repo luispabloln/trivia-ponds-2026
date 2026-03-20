@@ -129,7 +129,7 @@ function showQuestion() {
 }
 
 function startTimer() {
-    let t = 10;
+    let t = 15;
     document.getElementById('timer-sec').innerText = t;
     clearInterval(timer);
     timer = setInterval(() => {
