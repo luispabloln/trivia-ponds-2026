@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Trivia Pond's</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glass-card" style="max-width: 700px;">
+        <h1>Control Admin</h1>
+        <button id="start-game-btn" class="btn-main" style="border-color: #81c784; color: #81c784;">Iniciar Juego para Todos</button>
+        <button id="reset-game-btn" style="background: none; color: red; margin-top: 10px; cursor: pointer;">Resetear Ranking</button>
+        
+        <div style="margin-top: 40px;">
+            <h2 style="text-transform: uppercase;">Ranking en Vivo</h2>
+            <div id="ranking-list"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, set, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDWK5PYq-swvsi9NPKUqVwKHRtHam683Sg",
+            authDomain: "trivia-ponds-8d9ec.firebaseapp.com",
+            databaseURL: "https://trivia-ponds-8d9ec-default-rtdb.firebaseio.com",
+            projectId: "trivia-ponds-8d9ec",
+            storageBucket: "trivia-ponds-8d9ec.firebasestorage.app",
+            messagingSenderId: "686036490708",
+            appId: "1:686036490708:web:83c3e4d5dfa579a5215e41"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        document.getElementById('start-game-btn').onclick = () => set(ref(db, 'estadoJuego'), "iniciado");
+        document.getElementById('reset-game-btn').onclick = () => {
+            remove(ref(db, 'jugadores'));
+            set(ref(db, 'estadoJuego'), "esperando");
+        };
+
+        onValue(ref(db, 'jugadores'), (snap) => {
+            const data = snap.val();
+            if(!data) { document.getElementById('ranking-list').innerHTML = ""; return; }
+            const lista = Object.entries(data).sort((a,b) => b[1].puntos - a[1].puntos);
+            let html = "";
+            lista.forEach(([name, val]) => {
+                html += `<p><span>${name}</span> <span>${val.puntos} pts</span></p>`;
+            });
+            document.getElementById('ranking-list').innerHTML = html;
+        });
+    </script>
+</body>
+</html>

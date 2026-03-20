@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pond's Trivia 2026</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <div id="home-screen" class="glass-card">
+            <h1>Skin Care Trivia</h1>
+            <input type="text" id="player-name" placeholder="TU NOMBRE" style="background: transparent; border: 2px solid white; color: white; padding: 15px; width: 100%; margin-bottom: 20px; text-align: center; font-size: 1.2rem;">
+            <button id="join-btn" class="btn-main">Unirse al Juego</button>
+            <p id="wait-msg" class="hidden" style="margin-top: 20px;">Esperando al administrador...</p>
+        </div>
+
+        <div id="quiz-screen" class="glass-card hidden">
+            <div class="quiz-meta">
+                <span id="progress-text">Pregunta 1</span>
+                <div class="timer-badge"><span id="timer-sec">10</span>s</div>
+            </div>
+            <div class="progress-container"><div id="progress-bar"></div></div>
+            <h2 id="question-label" style="margin-bottom: 1.5rem;">Cargando...</h2>
+            <div id="options-grid" class="options-grid"></div>
+        </div>
+
+        <div id="result-screen" class="glass-card hidden">
+            <h2>Fin de la Trivia</h2>
+            <p id="final-score-msg" style="font-size: 1.5rem; margin: 20px 0;"></p>
+            <p>Mira el ranking en la pantalla principal</p>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script type="module" src="script.js"></script>
+</body>
+</html>

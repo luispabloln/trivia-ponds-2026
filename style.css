@@ -1,0 +1,120 @@
+:root {
+    --bg-gradient: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+    --primary-black: #000000;
+    --primary-blue: #00acc1;
+    --text-main: #ffffff;
+    --success: #81c784;
+    --error: #e57373;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-main);
+    padding: 20px;
+}
+
+.glass-card {
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 550px;
+    text-align: center;
+    border: 1px solid #333;
+}
+
+.hidden { display: none !important; }
+
+h1 { color: var(--text-main); margin-bottom: 1rem; font-size: 2.5rem; font-weight: 700; text-transform: uppercase; }
+
+.quiz-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.timer-badge {
+    background: #333333;
+    padding: 5px 15px;
+    font-weight: bold;
+}
+
+.progress-container {
+    height: 8px;
+    background: #333333;
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+#progress-bar {
+    height: 100%;
+    background: white;
+    width: 0%;
+    transition: width 0.4s ease;
+}
+
+.options-grid {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 2rem;
+}
+
+button { font-family: inherit; cursor: pointer; border: none; transition: all 0.2s; }
+
+.btn-main, .btn-next {
+    background: transparent;
+    color: white;
+    padding: 15px 30px;
+    font-weight: 700;
+    width: 100%;
+    border: 2px solid white;
+    text-transform: uppercase;
+}
+
+.btn-main:hover, .btn-next:hover { background: white; color: black; }
+
+.btn-option {
+    background: transparent;
+    padding: 14px 20px;
+    border: 2px solid white;
+    text-align: left;
+    font-weight: 600;
+    color: white;
+}
+
+.btn-option:hover:not([disabled]) { background: white; color: black; }
+
+.correct { background: var(--success) !important; color: white; border-color: var(--success); }
+.wrong { background: var(--error) !important; color: white; border-color: var(--error); }
+
+/* ESTILOS DEL RANKING ADICIONADOS */
+#ranking-list p {
+    background: white;
+    color: #455a64;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    font-size: 1.4rem;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+#ranking-list p:nth-child(1) { border-left: 8px solid #ffd700; } 
+#ranking-list p:nth-child(2) { border-left: 8px solid #c0c0c0; } 
+#ranking-list p:nth-child(3) { border-left: 8px solid #cd7f32; }
